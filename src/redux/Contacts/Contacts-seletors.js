@@ -2,6 +2,7 @@ export const getItems = store => store.items.values;
 
 export const getFilteredContacts = state => {
   if (!state.filter.value) {
+    console.log(state);
     return state.items.values;
   }
   const normalizedFilterText = state.filter.value.toLowerCase();

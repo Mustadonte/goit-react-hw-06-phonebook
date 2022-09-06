@@ -1,13 +1,13 @@
-export const getItems = store => store.items.values;
+export const getItems = store => store.contacts.items;
 
 export const getFilteredContacts = state => {
-  if (!state.filter.value) {
-    console.log(state);
-    return state.items.values;
+  if (!state.contacts.filter) {
+    return state.contacts.items;
   }
-  const normalizedFilterText = state.filter.value.toLowerCase();
 
-  return state.items.values.filter(item =>
+  const normalizedFilterText = state.contacts.filter.toLowerCase();
+
+  return state.contacts.items.filter(item =>
     item.name.toLowerCase().includes(normalizedFilterText)
   );
 };

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Container } from './Container/Container';
 
 import ContactForm from './ContactForm/ContactForm';
@@ -10,10 +9,6 @@ import { Filter } from './Filter/Filter';
 
 export const App = () => {
   const contacts = useSelector(getItems);
-
-  useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
   const dispatch = useDispatch();
   const formSubmitHandler = data => {

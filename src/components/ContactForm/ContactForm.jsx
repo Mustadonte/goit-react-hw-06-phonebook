@@ -1,11 +1,22 @@
 import useForm from 'components/hooks/useForm';
 import css from './Form.module.css';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/Contacts/ContactListSlice';
+import { getFilteredContacts } from 'redux/Contacts/Contacts-seletors';
 
-const ContactForm = ({ onSubmit }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getFilteredContacts);
   const initialState = {
     name: '',
     number: '',
+  };
+
+  const onSubmit = data => {
+    if (contacts.find(contact => contact.name === data.name)) {
+      return alert(`Contact of ${data.name} is already exist`);
+    }
+    dispatch(addContact(data));
   };
 
   const { state, handleChange, handleSubmit } = useForm({
@@ -46,10 +57,6 @@ const ContactForm = ({ onSubmit }) => {
       </button>
     </form>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ContactForm;

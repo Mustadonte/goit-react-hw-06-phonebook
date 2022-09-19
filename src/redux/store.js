@@ -12,8 +12,8 @@ import {
 import contactListSlice from './Contacts/ContactListSlice';
 import filterSlice from './Filter/filterSlice';
 
-const filterRootConfig = {
-  key: 'filter',
+const contactsRootConfig = {
+  key: 'contacts',
   storage,
 };
 
@@ -21,11 +21,11 @@ const rootReducer = combineReducers({
   items: contactListSlice,
   filter: filterSlice,
 });
-const persistRootReducer = persistReducer(filterRootConfig, rootReducer);
+const persistRootReducer = persistReducer(contactsRootConfig, rootReducer);
 
 export const store = configureStore({
   reducer: {
-    contacts: persistRootReducer,
+    contacts: persistRootReducer, 
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
